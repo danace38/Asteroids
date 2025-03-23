@@ -14,6 +14,7 @@ def main():
  
     #Infinite loop for the game loop. This will display GUI filled with black color background.
     while True:
+        player.update(dt)
         screen.fill("black")
         player.draw(screen)
         pygame.display.flip()
