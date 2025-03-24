@@ -2,6 +2,7 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+import sys
 from constants import *
 from player import Player
 from asteroid import Asteroid
@@ -31,6 +32,12 @@ def main():
     #Infinite loop for the game loop. This will display GUI filled with black color background.
     while True:
         updatable.update(dt)
+
+        for asteroid in asteroids:
+            if asteroid.check_collisions(player):
+                print("Game over!")
+                sys.exit()
+
         screen.fill("black")
 
         for obj in drawable:
