@@ -40,6 +40,11 @@ def main():
             if asteroid.check_collisions(player):
                 print("Game over!")
                 sys.exit()
+            
+            for shot in shots:
+                if asteroid.check_collisions(shot):
+                    shot.kill()
+                    asteroid.kill()
 
         screen.fill("black")
 
@@ -48,15 +53,13 @@ def main():
         
         pygame.display.flip()
         
+        # This limits the framerate to 60 FPS
+        dt = clock.tick(60) / 1000
+
         #This will check if the user has closed the window and exit the game loop if they do.
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        
-        # This limits the framerate to 60 FPS
-        dt = clock.tick(60) / 1000
-
-        
     
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
