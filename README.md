@@ -3,3 +3,4 @@ This is a Python implementation of a simple Asteroids game, inspired by a versio
 
 # Video Walkthrough
 Here's a walkthrough of this Asteroids game:
+![Asteroids_BootDev](https://github.com/user-attachments/assets/b3cc89fc-cb27-4ce8-aeb7-df49395d4f80)
