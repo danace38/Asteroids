@@ -69,3 +69,7 @@ Found a typo in the documentation or interested in contributing to this project?
 
 The project has been completed as part of [Boot.dev](https://boot.dev)
 curriculum.
+
+# License
+ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+ 
