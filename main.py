@@ -16,9 +16,13 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
-    # This will count how many asteroids are destroyed and storing font and text in the variables
+    # Variable counters for score tracking
     asteroids_destroyed = 0
-    font = pygame.font.SysFont(None, 36)
+    big_asteroid = 0
+    medium_asteroid = 0
+    small_asteroid = 0
+
+    font = pygame.font.SysFont(None, 25)
 
     # pygame groups
     updatable = pygame.sprite.Group()
@@ -40,8 +44,15 @@ def main():
     #Infinite loop for the game main loop. This will display GUI filled with black color background.
     while True:
         updatable.update(dt)
-        score_text = font.render(f"Asteroids: {asteroids_destroyed}", True, (255, 255, 255))
+        total_score = (big_asteroid * 5) + (medium_asteroid * 3) + (small_asteroid * 1)
         
+        destoyed_text = font.render(f"Total Destroyed Asteroids: {asteroids_destroyed} ", True, (255, 255, 255))
+        big_text = font.render(f"Big Asteroid Points: {big_asteroid * 5} ", True, (255, 255, 255))
+        medium_text = font.render(f"Medium Asteroid Points: {medium_asteroid * 3} ", True, (255, 255, 255))
+        small_text = font.render(f"Small Asteroid Points: {small_asteroid * 1} ", True, (255, 255, 255))
+        total_text = font.render(f"Total Points: {total_score}", True, (255, 255, 255))
+
+
         for asteroid in asteroids:
             if asteroid.check_collisions(player):
                 print("Game over!")
@@ -52,15 +63,27 @@ def main():
                     shot.kill()
                     asteroid.split()
                     asteroids_destroyed += 1
-        
+                    
+                    if asteroid.radius >= 60:
+                        big_asteroid += 1
+                    elif asteroid.radius >= 40:
+                        medium_asteroid += 1
+                    else:
+                        small_asteroid += 1
+     
                  
         screen.blit(background, (0,0))
-        screen.blit(score_text, (20, 20))  
+        screen.blit(big_text, (20, 20))
+        screen.blit(medium_text, (300, 20))
+        screen.blit(small_text, (600, 20))  
+        screen.blit(total_text, (20, 50))
+        screen.blit(destoyed_text, (20, 76))
 
         for obj in drawable:
             obj.draw(screen)
         
         pygame.display.flip()
+        pygame.display.set_caption("Asteroids Game")
         
         # This limits the framerate to 60 FPS
         dt = clock.tick(60) / 1000
@@ -70,9 +93,6 @@ def main():
             if event.type == pygame.QUIT:
                 return
     
-    print("Starting Asteroids!")
-    print(f"Screen width: {SCREEN_WIDTH}")
-    print(f"Screen height: {SCREEN_HEIGHT}")
 
 if __name__ == "__main__":
     main()
