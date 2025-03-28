@@ -16,6 +16,10 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    # This will count how many asteroids are destroyed and storing font and text in the variables
+    asteroids_destroyed = 0
+    font = pygame.font.SysFont(None, 36)
+
     # pygame groups
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
@@ -33,10 +37,11 @@ def main():
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
  
-    #Infinite loop for the game loop. This will display GUI filled with black color background.
+    #Infinite loop for the game main loop. This will display GUI filled with black color background.
     while True:
         updatable.update(dt)
-
+        score_text = font.render(f"Asteroids: {asteroids_destroyed}", True, (255, 255, 255))
+        
         for asteroid in asteroids:
             if asteroid.check_collisions(player):
                 print("Game over!")
@@ -46,8 +51,11 @@ def main():
                 if asteroid.check_collisions(shot):
                     shot.kill()
                     asteroid.split()
-
+                    asteroids_destroyed += 1
+        
+                 
         screen.blit(background, (0,0))
+        screen.blit(score_text, (20, 20))  
 
         for obj in drawable:
             obj.draw(screen)
