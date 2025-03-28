@@ -42,7 +42,7 @@ source venv/bin/activate
 
 You should see **(venv)** at the beginning of your terminal prompt, for example, mine is:
 ```
-(venv) danermo@DanilVictus:~/workspace/asteroids$
+(venv) danace38@MyPC:~/workspace/asteroids$
 ```
 
 * Install the requirements that are specified in **requirements.txt** file by running this command
@@ -72,4 +72,3 @@ curriculum.
 
 # License
  This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
- 
